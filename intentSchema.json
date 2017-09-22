@@ -1,0 +1,178 @@
+{
+  "intents": [
+    {
+      "name": "AMAZON.CancelIntent",
+      "samples": []
+    },
+    {
+      "name": "AMAZON.HelpIntent",
+      "samples": []
+    },
+    {
+      "name": "AMAZON.StopIntent",
+      "samples": []
+    },
+    {
+      "name": "ScheduleAnAppointment",
+      "samples": [
+        "Schedule service on {date} ",
+        "Make an appoinment for service on {date} ",
+        "Make an appoinment on {date} ",
+        "Make an appointment"
+      ],
+      "slots": [
+        {
+          "name": "make",
+          "type": "MAKE",
+          "samples": [
+            "i'd like to go to Schedule an appointment for my {make} ",
+            "Make an appointment for my {make} "
+          ]
+        },
+        {
+          "name": "model",
+          "type": "MODEL",
+          "samples": [
+            "i'd like to go to Schedule an appointment for my {model} ",
+            "Make an appointment for my {model} "
+          ]
+        },
+        {
+          "name": "date",
+          "type": "AMAZON.DATE",
+          "samples": [
+            "{date} ",
+            "Make an appointment for {date} ",
+            "Make an appointment on {date} ",
+            "Schedule an appointment for {date} ",
+            "Schedule an appointment on {date} "
+          ]
+        },
+        {
+          "name": "year",
+          "type": "AMAZON.FOUR_DIGIT_NUMBER",
+          "samples": []
+        }
+      ]
+    }
+  ],
+  "types": [
+    {
+      "name": "MAKE",
+      "values": [
+        {
+          "id": null,
+          "name": {
+            "value": "TOYOTA",
+            "synonyms": []
+          }
+        }
+      ]
+    },
+    {
+      "name": "MODEL",
+      "values": [
+        {
+          "id": null,
+          "name": {
+            "value": "PRIUS",
+            "synonyms": []
+          }
+        }
+      ]
+    }
+  ],
+  "prompts": [
+    {
+      "id": "Elicit.Intent-ScheduleAnAppointment.IntentSlot-make",
+      "promptVersion": "1.0",
+      "definitionVersion": "1.0",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "What is your vehicle's make?"
+        },
+        {
+          "type": "PlainText",
+          "value": "What's the make name"
+        }
+      ]
+    },
+    {
+      "id": "Elicit.Intent-ScheduleAnAppointment.IntentSlot-model",
+      "promptVersion": "1.0",
+      "definitionVersion": "1.0",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "What is your vehicle's model?"
+        },
+        {
+          "type": "PlainText",
+          "value": "What's the model name"
+        }
+      ]
+    },
+    {
+      "id": "Elicit.Intent-ScheduleAnAppointment.IntentSlot-date",
+      "promptVersion": "1.0",
+      "definitionVersion": "1.0",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "What day would you like?"
+        },
+        {
+          "type": "PlainText",
+          "value": "When would you like your appointment?"
+        }
+      ]
+    }
+  ],
+  "dialog": {
+    "version": "1.0",
+    "intents": [
+      {
+        "name": "ScheduleAnAppointment",
+        "confirmationRequired": false,
+        "prompts": {},
+        "slots": [
+          {
+            "name": "make",
+            "type": "MAKE",
+            "elicitationRequired": true,
+            "confirmationRequired": false,
+            "prompts": {
+              "elicit": "Elicit.Intent-ScheduleAnAppointment.IntentSlot-make"
+            }
+          },
+          {
+            "name": "model",
+            "type": "MODEL",
+            "elicitationRequired": true,
+            "confirmationRequired": false,
+            "prompts": {
+              "elicit": "Elicit.Intent-ScheduleAnAppointment.IntentSlot-model"
+            }
+          },
+          {
+            "name": "date",
+            "type": "AMAZON.DATE",
+            "elicitationRequired": true,
+            "confirmationRequired": false,
+            "prompts": {
+              "elicit": "Elicit.Intent-ScheduleAnAppointment.IntentSlot-date"
+            }
+          },
+          {
+            "name": "year",
+            "type": "AMAZON.FOUR_DIGIT_NUMBER",
+            "elicitationRequired": false,
+            "confirmationRequired": false,
+            "prompts": {}
+          }
+        ]
+      }
+    ]
+  }
+}
